@@ -1,6 +1,6 @@
 ---
 layout: schedule
-title: Computer Science Time Box Page
-units: "1,2"
+title: Passion Project Time Box
+units: "1"
 course: compsci
 ---

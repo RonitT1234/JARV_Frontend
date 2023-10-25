@@ -27,9 +27,7 @@ Load all posts with site
 {% for unit in units %}
 {% assign unitKey = "Unit" | append: unit %}
 {% assign unitData = course[unitKey] %}
-<h2>
-  {{ unitKey }}: {{ unitData.title }}
-</h2>
+
 <p>  {{ unitData.description }} </p>
 
 {% assign start = unitData.start %}
