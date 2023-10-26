@@ -3,15 +3,81 @@ layout: default
 title: Student Blog
 ---
 
-![Alt text](images/pokemon.png)
+<head>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width,
+    initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Flip Card</title>
+    <script src="script.js"></script>
+</head>
+
+
+<body>
+    <div id="pokemon-pack">
+        <img src="./images/cover.jpg">
+    </div>
+    <div id="pokemon-cards-opened">
+    </div>
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+<html>
+<head>
+    <title>Cool Image Box</title>
+    <style>
+        /* Define the cool image box style */
+        .cool-image-box {
+            border: 4px dashed red; /* Red dashed border */
+            border-radius: 20px;
+            padding: 20px;
+            display: inline-block;
+        }
+
+        .box-content {
+            background-color: #f2f2f2;
+            text-align: center;
+        }
+
+        .box-image {
+            width: 600px; /* Make the image more rectangular */
+            height: 300px; /* Make the image more rectangular */
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="cool-image-box">
+        <div class="box-content">
+            <img class="box-image" src="images/pokemon.png" alt="Pokemon Image">
+        </div>
+    </div>
+</body>
+</html>
 
 <!-- HTML table fragment for page -->
 <table>
   <thead>
   <tr>
     <th>Pokemon</th>
-    <th>Upvote</th>
-    <th>Downvote</th>
+    <th>Upvotes</th>
+    <th>Downvotes</th>
   </tr>
   </thead>
   <tbody id="result">
@@ -149,3 +215,20 @@ title: Student Blog
   }
 
 </script>
+
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~
+
+<body>
+    <div class="container">
+        <div class ="card">
+            <div class="front"></div>
+            <div class="back">
+                <h1>Back of Card</h1>
+                <p>Addtional Info on the back of the card</p>
+            </div>
+        </div>
+    </div>
+<body>
+<html>
+
