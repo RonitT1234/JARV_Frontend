@@ -24,7 +24,7 @@ title: Student Blog
                 console.error("Error:", error);
             });
         }
-        // Function to handle toggling between upvote and downvote
+        // Function to handle toggling between upvote and downvotes
         function toggleVote(buttonId) {
             if (currentVote === buttonId) {
                 return; // If the same button is clicked, do nothing
