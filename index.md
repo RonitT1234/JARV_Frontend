@@ -25,7 +25,7 @@ title: Student Blog
   // prepare HTML defined "result" container for new output
   const resultContainer = document.getElementById("result");
 
-  // keys for joke reactions
+  // keys for pokemon reactions
   const UPVOTE = "upvote";
   const DOWNVOTE = "downvote";
 
@@ -64,9 +64,9 @@ title: Student Blog
             // make "tr element" for each "row of data"
             const tr = document.createElement("tr");
             
-            // td for joke cell
-            const joke = document.createElement("td");
-              joke.innerHTML = row.id + ". " + row.joke;  // add fetched data to innerHTML
+            // td for pokemon cell
+            const pokemon = document.createElement("td");
+              pokemon.innerHTML = row.id + ". " + row.pokemon;  // add fetched data to innerHTML
 
             // td for upvote cell with onclick actions
             const upvote = document.createElement("td");
@@ -91,7 +91,7 @@ title: Student Blog
               downvote.appendChild(downvote_but);  // add "downvote button" to downvote cell
              
             // this builds ALL td's (cells) into tr (row) element
-            tr.appendChild(joke);
+            tr.appendChild(pokemon);
             tr.appendChild(upvote);
             tr.appendChild(downvote);
 
