@@ -5,119 +5,147 @@ title: Student Blog
 
 ![Alt text](images/pokemon.png)
 
-# Pokedex by Ronit T, Vance R, Jared B, Ashwin V.
-<html>
-<head>
-    <title>Vote for Pokemon</title>
-    <style>
-        /* Define the style for the grid container */
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(2, 200px);
-            grid-template-rows: repeat(2, 200px);
-            gap: 10px;
-        }
+<!-- HTML table fragment for page -->
+<table>
+  <thead>
+  <tr>
+    <th>Pokemon</th>
+    <th>Upvote</th>
+    <th>Downvote</th>
+  </tr>
+  </thead>
+  <tbody id="result">
+    <!-- javascript generated data -->
+  </tbody>
+</table>
 
-        /* Define the style for the individual squares */
-        .grid-item {
-            background-color: #3498db;
-            border: 1px solid #333;
-            text-align: center;
-            font-size: 20px;
-        }
+<!-- Script is layed out in a sequence (without a function) and will execute when page is loaded -->
+<script>
 
-        /* Style for the vote buttons */
-        .vote-button {
-            width: 80px;
-            height: 40px;
-            background-color: #4CAF50;
-            border: none;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-        }
-    </style>
-</head>
-<body>
-    <div class="grid-container">
-        <!-- Box 0 -->
-        <div class="grid-item">
-            <p>Box 0</p>
-            <button class="vote-button" id="upvoteButton0" onclick="toggleVote(0, 'upvoteButton0')">Upvote</button>
-            <button class="vote-button" id="downvoteButton0" onclick="toggleVote(0, 'downvoteButton0')">Downvote</button>
-            <p id="voteCount0">Votes: 0</p>
-        </div>
+  // prepare HTML defined "result" container for new output
+  const resultContainer = document.getElementById("result");
 
-        <!-- Box 1 -->
-        <div class="grid-item">
-            <p>Box 1</p>
-            <button class="vote-button" id="upvoteButton1" onclick="toggleVote(1, 'upvoteButton1')">Upvote</button>
-            <button class="vote-button" id="downvoteButton1" onclick="toggleVote(1, 'downvoteButton1')">Downvote</button>
-            <p id="voteCount1">Votes: 0</p>
-        </div>
+  // keys for joke reactions
+  const UPVOTE = "upvote";
+  const DOWNVOTE = "downvote";
 
-        <!-- Box 2 -->
-        <div class="grid-item">
-            <p>Box 2</p>
-            <button class="vote-button" id="upvoteButton2" onclick="toggleVote(2, 'upvoteButton2')">Upvote</button>
-            <button class="vote-button" id="downvoteButton2" onclick="toggleVote(2, 'downvoteButton2')">Downvote</button>
-            <p id="voteCount2">Votes: 0</p>
-        </div>
+  // prepare fetch urls
+  const url = "https://jarvproject.stu.nighthawkcodingsociety.com/api/pokemons";
+  const like_url = url + "/upvote/";  // upvote reaction
+  const jeer_url = url + "/downvote/";  // downvote reaction
 
-        <!-- Box 3 -->
-        <div class="grid-item">
-            <p>Box 3</p>
-            <button class="vote-button" id="upvoteButton3" onclick="toggleVote(3, 'upvoteButton3')">Upvote</button>
-            <button class="vote-button" id="downvoteButton3" onclick="toggleVote(3, 'downvoteButton3')">Downvote</button>
-            <p id="voteCount3">Votes: 0</p>
-        </div>
-    </div>
+  // prepare fetch GET options
+  const options = {
+    method: 'GET', // *GET, POST, PUT, DELETE, etc.
+    mode: 'cors', // no-cors, *cors, same-origin
+    cache: 'default', // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: 'omit', // include, *same-origin, omit
+    headers: {
+      'Content-Type': 'application/json'
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+  };
+  // prepare fetch PUT options, clones with JS Spread Operator (...)
+  const put_options = {...options, method: 'PUT'}; // clones and replaces method
 
-    <script>
-        let currentVotes = [0, 0, 0, 0]; // Track the current vote states for each box
+  // fetch the API
+  fetch(url, options)
+    // response is a RESTful "promise" on any successful fetch
+    .then(response => {
+      // check for response errors
+      if (response.status !== 200) {
+          error('GET API response failure: ' + response.status);
+          return;
+      }
+      // valid response will have JSON data
+      response.json().then(data => {
+          console.log(data);
+          for (const row of data) {
+            // make "tr element" for each "row of data"
+            const tr = document.createElement("tr");
+            
+            // td for joke cell
+            const joke = document.createElement("td");
+              joke.innerHTML = row.id + ". " + row.joke;  // add fetched data to innerHTML
 
-        // Function to get and display the current vote count for a box
-        function updateVoteCount(boxId) {
-            fetch(`https://jarvproject.stu.nighthawkcodingsociety.com/api/pokemons/upvote/${boxId}`)
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById(`voteCount${boxId}`).textContent = `Votes: ${data.count}`;
-                })
-                .catch(error => {
-                    console.error("Error:", error);
-                });
-        }
+            // td for upvote cell with onclick actions
+            const upvote = document.createElement("td");
+              const upvote_but = document.createElement('button');
+              upvote_but.id = UPVOTE+row.id   // establishes a UPVOTE JS id for cell
+              upvote_but.innerHTML = row.upvote;  // add fetched "upvote count" to innerHTML
+              upvote_but.onclick = function () {
+                // onclick function call with "like parameters"
+                reaction(UPVOTE, like_url+row.id, upvote_but.id);  
+              };
+              upvote.appendChild(upvote_but);  // add "upvote button" to upvote cell
 
-        // Function to handle toggling between upvote and downvote for a box
-        function toggleVote(boxId, buttonId) {
-            if (currentVotes[boxId] === buttonId) {
-                return; // If the same button is clicked, do nothing
-            }
+            // td for downvote cell with onclick actions
+            const downvote = document.createElement("td");
+              const downvote_but = document.createElement('button');
+              downvote_but.id = DOWNVOTE+row.id  // establishes a DOWNVOTE JS id for cell
+              downvote_but.innerHTML = row.downvote;  // add fetched "downvote count" to innerHTML
+              downvote_but.onclick = function () {
+                // onclick function call with "jeer parameters"
+                reaction(DOWNVOTE, jeer_url+row.id, downvote_but.id);  
+              };
+              downvote.appendChild(downvote_but);  // add "downvote button" to downvote cell
+             
+            // this builds ALL td's (cells) into tr (row) element
+            tr.appendChild(joke);
+            tr.appendChild(upvote);
+            tr.appendChild(downvote);
 
-            // Perform the new vote action (upvote or downvote) for the box
-            fetch(`https://jarvproject.stu.nighthawkcodingsociety.com/api/pokemons/${buttonId === `upvoteButton${boxId}` ? 'upvote' : 'downvote'}/${boxId}`, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({ [buttonId === `upvoteButton${boxId}` ? 'upvote' : 'downvote']: true }),
-            })
-                .then(() => {
-                    updateVoteCount(boxId); // Update the vote count for the box
-                    currentVotes[boxId] = buttonId; // Update the current vote state for the box
-                });
+            // this adds all the tr (row) work above to the HTML "result" container
+            resultContainer.appendChild(tr);
+          }
+      })
+  })
+  // catch fetch errors (ie Nginx ACCESS to server blocked)
+  .catch(err => {
+    error(err + " " + url);
+  });
 
-            // Enable both buttons for the box
-            document.getElementById(`upvoteButton${boxId}`).disabled = false;
-            document.getElementById(`downvoteButton${boxId}`).disabled = false;
-            // Disable the clicked button for the box
-            document.getElementById(buttonId).disabled = true;
-        }
+  // Reaction function to likes or jeers user actions
+  function reaction(type, put_url, elemID) {
 
-        // Initialize the vote counts for all boxes
-        for (let i = 0; i <= 3; i++) {
-            updateVoteCount(i);
-        }
-    </script>
-</body>
-</html>
+    // fetch the API
+    fetch(put_url, put_options)
+    // response is a RESTful "promise" on any successful fetch
+    .then(response => {
+      // check for response errors
+      if (response.status !== 200) {
+          error("PUT API response failure: " + response.status)
+          return;  // api failure
+      }
+      // valid response will have JSON data
+      response.json().then(data => {
+          console.log(data);
+          // Likes or Jeers updated/incremented
+          if (type === UPVOTE) // like data element
+            document.getElementById(elemID).innerHTML = data.upvote;  // fetched upvote data assigned to upvote Document Object Model (DOM)
+          else if (type === DOWNVOTE) // jeer data element
+            document.getElementById(elemID).innerHTML = data.downvote;  // fetched downvote data assigned to downvote Document Object Model (DOM)
+          else
+            error("unknown type: " + type);  // should never occur
+      })
+    })
+    // catch fetch errors (ie Nginx ACCESS to server blocked)
+    .catch(err => {
+      error(err + " " + put_url);
+    });
+    
+  }
+
+  // Something went wrong with actions or responses
+  function error(err) {
+    // log as Error in console
+    console.error(err);
+    // append error to resultContainer
+    const tr = document.createElement("tr");
+    const td = document.createElement("td");
+    td.innerHTML = err;
+    tr.appendChild(td);
+    resultContainer.appendChild(tr);
+  }
+
+</script>
