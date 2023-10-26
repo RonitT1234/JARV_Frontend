@@ -6,7 +6,7 @@ window.onload = function() {
 function openPack() {
     var pack = document.getElementById("pokemon-pack");
     pack.style.display = "none";
-    
+
     for (let i = 0; i < 11; i++) {
         // Create a container element
         var container = document.createElement("div");
