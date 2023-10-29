@@ -3,43 +3,88 @@ window.onload = function() {
     pack.addEventListener("click", openPack);
 }
 
+var pokemonData = []; // Initialize the variable to store data
+
+function fetchAPIdata() {
+    // You should replace this URL with your actual API endpoint to fetch image data.
+    const apiUrl = 'https://jarvproject.stu.nighthawkcodingsociety.com/api/pokemons/';
+
+    // Make an HTTP GET request to the API
+    return fetch(apiUrl)
+        .then(response => response.json()) // Parse the JSON response
+        .then(data => {
+            pokemonData = data; // Store the data as it is
+            console.log(pokemonData[0].image);
+            // Call moveTarget immediately to position the dot at the first location
+        })
+        .catch(error => {
+            console.error("Error fetching images:", error);
+        });
+}
+
+function fetchRandomAPIdata() {
+    // You should replace this URL with your actual API endpoint to fetch image data.
+    const apiUrl = 'https://jarvproject.stu.nighthawkcodingsociety.com/api/pokemons/random';
+
+    // Make an HTTP GET request to the API
+    return fetch(apiUrl)
+        .then(response => response.json()) // Parse the JSON response
+        .then(data => {
+            const randomPokemonData = data; // Store the data as it is
+            const randomPokemon = randomPokemonData.pokemon;
+            return randomPokemon; // Return the randomPokemon data
+        })
+        .catch(error => {
+            console.error("Error fetching images:", error);
+        });
+}
+
 function openPack() {
     var pack = document.getElementById("pokemon-pack");
     pack.style.display = "none";
 
+    // Create an array to store promises for fetch requests
+    var fetchPromises = [];
+
     for (let i = 0; i < 11; i++) {
-        // Create a container element
-        var container = document.createElement("div");
-        container.className = "container";
-
-        // Create a card element
-        var card = document.createElement("div");
-        card.className = "card";
-
-        // Create a front element
-        var front = document.createElement("div");
-        front.className = "front";
-
-        // Create a back element
-        var back = document.createElement("div");
-        back.className = "back";
-
-        // Create content for the back of the card
-        var h1 = document.createElement("h1");
-        h1.textContent = "Back of Card";
-
-        var p = document.createElement("p");
-        p.textContent = "Additional Info on the back of the card";
-
-        // Append elements to the appropriate parents
-        back.appendChild(h1);
-        back.appendChild(p);
-        card.appendChild(front);
-        card.appendChild(back);
-        container.appendChild(card);
-
-        // Append the container to the "pokemon-cards-opened" div
-        var openedDiv = document.getElementById("pokemon-cards-opened");
-        openedDiv.appendChild(container);
+        fetchPromises.push(fetchRandomAPIdata());
     }
+
+    // Use Promise.all to wait for all fetch requests to complete
+    Promise.all(fetchPromises)
+        .then(randomPokemons => {
+            var openedDiv = document.getElementById("pokemon-cards-opened");
+
+            // Create and display cards
+            randomPokemons.forEach(randomPokemon => {
+                var container = document.createElement("div");
+                container.className = "container";
+
+                var card = document.createElement("div");
+                card.className = "card";
+
+                var front = document.createElement("div");
+                front.className = "front";
+
+                var back = document.createElement("div");
+                back.className = "back";
+
+                var h1 = document.createElement("h1");
+                h1.textContent = "Back of Card";
+
+                var p = document.createElement("p");
+                p.textContent = randomPokemon;
+
+                back.appendChild(h1);
+                back.appendChild(p);
+                card.appendChild(front);
+                card.appendChild(back);
+                container.appendChild(card);
+
+                openedDiv.appendChild(container);
+            });
+        })
+        .catch(error => {
+            console.error("Error fetching random Pokemons:", error);
+        });
 }

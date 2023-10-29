@@ -23,20 +23,6 @@ title: Student Blog
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 <html>
 <head>
     <title>Cool Image Box</title>
@@ -125,7 +111,7 @@ title: Student Blog
       }
       // valid response will have JSON data
       response.json().then(data => {
-          console.log(data);
+          //console.log(data);
           for (const row of data) {
             // make "tr element" for each "row of data"
             const tr = document.createElement("tr");
@@ -185,7 +171,7 @@ title: Student Blog
       }
       // valid response will have JSON data
       response.json().then(data => {
-          console.log(data);
+          //console.log(data);
           // Likes or Jeers updated/incremented
           if (type === UPVOTE) // like data element
             document.getElementById(elemID).innerHTML = data.upvote;  // fetched upvote data assigned to upvote Document Object Model (DOM)
@@ -231,3 +217,4 @@ title: Student Blog
     </div>
 <body>
 <html>
+
