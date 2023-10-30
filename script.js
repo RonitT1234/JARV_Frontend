@@ -37,7 +37,7 @@ function fetchRandomName() {
         });
 }
 
-function openPack() {
+async function openPack() {
     var pack = document.getElementById("pokemon-pack");
     pack.style.display = "none";
 
@@ -54,7 +54,7 @@ function openPack() {
             var openedDiv = document.getElementById("pokemon-cards-opened");
 
             // Create and display cards
-            randomPokemonDataArray.forEach(randomPokemonData => {
+            randomPokemonDataArray.forEach(async (randomPokemonData, index) => {
                 var container = document.createElement("div");
                 container.className = "container";
 
@@ -68,11 +68,23 @@ function openPack() {
                 back.className = "back";
 
                 var h1 = document.createElement("h1");
-                h1.textContent = randomPokemonData.pokemon; // Set h1.textContent to randomPokemonData.info
+                const name = randomPokemonData.pokemon; // Get the Pokémon name
 
+                // Fetch detailed information from PokeAPI
+                const pokemonInfo = await getPokemonInfo(name);
+                const imageUrl = await getPokemonImage(name);
+
+                h1.textContent = name;
                 var p = document.createElement("p");
-                p.textContent = randomPokemonData.info;
+                p.textContent = pokemonInfo; // Set p.textContent to the Pokémon info
 
+                var image = document.createElement("img");
+                image.src = imageUrl; // Set the image source
+                image.style.width = "250px"; // Set the width to make the image bigger
+                image.style.height = "250px"; // Set the height to make the image bigger
+
+
+                back.appendChild(image);
                 back.appendChild(h1);
                 back.appendChild(p);
                 card.appendChild(front);
@@ -83,6 +95,30 @@ function openPack() {
             });
         })
         .catch(error => {
-            console.error("Error fetching random Pokemons:", error);
+            console.error("Error fetching random Pokémon:", error);
         });
+}
+
+// Function to fetch detailed Pokémon information from PokeAPI
+async function getPokemonInfo(pokemonName) {
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName.toLowerCase()}`);
+    const data = await response.json();
+    if (response.status === 200) {
+        const types = data.types.map(type => type.type.name).join(", ");
+        const abilities = data.abilities.map(ability => ability.ability.name).join(", ");
+        return `Type(s): ${types}\nAbilities: ${abilities}`;
+    } else {
+        return "Pokémon info not found!";
+    }
+}
+
+// Function to fetch Pokémon image from PokeAPI
+async function getPokemonImage(pokemonName) {
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName.toLowerCase()}`);
+    const data = await response.json();
+    if (response.status === 200) {
+        return data.sprites.front_default;
+    } else {
+        return "Image not found!";
+    }
 }
