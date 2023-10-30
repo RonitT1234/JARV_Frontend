@@ -23,6 +23,9 @@ title: Student Blog
 
 
 
+
+
+
 <html>
 <head>
     <title>Cool Image Box</title>
@@ -56,6 +59,7 @@ title: Student Blog
     </div>
 </body>
 </html>
+
 
 <!-- HTML table fragment for page -->
 <table>
@@ -203,9 +207,7 @@ title: Student Blog
 </script>
 
 
-# ~~~~~~~~~~~~~~~~~~~~~~~~~
-
-<body>
+<!--- <body>
     <div class="container">
         <div class ="card">
             <div class="front"></div>
@@ -216,5 +218,5 @@ title: Student Blog
         </div>
     </div>
 <body>
-<html>
+<html> -->
 

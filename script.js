@@ -22,7 +22,13 @@ function fetchAPIdata() {
         });
 }
 
-function fetchRandomAPIdata() {
+
+
+
+
+
+
+function fetchRandomName() {
     // You should replace this URL with your actual API endpoint to fetch image data.
     const apiUrl = 'https://jarvproject.stu.nighthawkcodingsociety.com/api/pokemons/random';
 
@@ -32,12 +38,15 @@ function fetchRandomAPIdata() {
         .then(data => {
             const randomPokemonData = data; // Store the data as it is
             const randomPokemon = randomPokemonData.pokemon;
+            const randomPokemonInfo = randomPokemonData.info;
             return randomPokemon; // Return the randomPokemon data
         })
         .catch(error => {
             console.error("Error fetching images:", error);
         });
 }
+
+
 
 function openPack() {
     var pack = document.getElementById("pokemon-pack");
@@ -47,7 +56,7 @@ function openPack() {
     var fetchPromises = [];
 
     for (let i = 0; i < 11; i++) {
-        fetchPromises.push(fetchRandomAPIdata());
+        fetchPromises.push(fetchRandomName());
     }
 
     // Use Promise.all to wait for all fetch requests to complete
@@ -70,7 +79,7 @@ function openPack() {
                 back.className = "back";
 
                 var h1 = document.createElement("h1");
-                h1.textContent = "Back of Card";
+                h1.textContent = randomPokemon;
 
                 var p = document.createElement("p");
                 p.textContent = randomPokemon;
