@@ -8,6 +8,52 @@ title: Student Blog
 ![Alt text](images/pokemon.png)
 
 
+<<<<<<< HEAD
+=======
+<body>
+    <div id="pokemon-pack">
+        <img src="./images/cover.jpg">
+    </div>
+    <div id="pokemon-cards-opened">
+    </div>
+</body>
+
+
+
+<html>
+<head>
+    <title>Cool Image Box</title>
+    <style>
+        /* Define the cool image box style */
+        .cool-image-box {
+            border: 4px solid red; /* Red dashed border */
+            border-radius: 20px;
+            padding: 20px;
+            display: inline-block;
+        }
+
+        .box-content {
+            background-color: #f2f2f2;
+            text-align: center;
+        }
+
+        .box-image {
+            width: 600px; /* Make the image more rectangular */
+            height: 300px; /* Make the image more rectangular */
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="cool-image-box">
+        <div class="box-content">
+            <img class="box-image" src="images/pokemon.png" alt="Pokemon Image">
+        </div>
+    </div>
+</body>
+</html>
+>>>>>>> f6b27fa (Game/Quiz)
 
 <!-- HTML table fragment for page -->
 <table>
