@@ -1,4 +1,4 @@
-window.onload = function() {
+window.onload = function () {
     var pack = document.getElementById("pokemon-pack");
     pack.addEventListener("click", openPack);
 }
@@ -22,12 +22,6 @@ function fetchAPIdata() {
         });
 }
 
-
-
-
-
-
-
 function fetchRandomName() {
     // You should replace this URL with your actual API endpoint to fetch image data.
     const apiUrl = 'https://jarvproject.stu.nighthawkcodingsociety.com/api/pokemons/random';
@@ -36,17 +30,12 @@ function fetchRandomName() {
     return fetch(apiUrl)
         .then(response => response.json()) // Parse the JSON response
         .then(data => {
-            const randomPokemonData = data; // Store the data as it is
-            const randomPokemon = randomPokemonData.pokemon;
-            const randomPokemonInfo = randomPokemonData.info;
-            return randomPokemon; // Return the randomPokemon data
+            return data; // Return the entire randomPokemonData
         })
         .catch(error => {
-            console.error("Error fetching images:", error);
+            console.error("Error fetching data:", error);
         });
 }
-
-
 
 function openPack() {
     var pack = document.getElementById("pokemon-pack");
@@ -61,11 +50,11 @@ function openPack() {
 
     // Use Promise.all to wait for all fetch requests to complete
     Promise.all(fetchPromises)
-        .then(randomPokemons => {
+        .then(randomPokemonDataArray => {
             var openedDiv = document.getElementById("pokemon-cards-opened");
 
             // Create and display cards
-            randomPokemons.forEach(randomPokemon => {
+            randomPokemonDataArray.forEach(randomPokemonData => {
                 var container = document.createElement("div");
                 container.className = "container";
 
@@ -79,10 +68,10 @@ function openPack() {
                 back.className = "back";
 
                 var h1 = document.createElement("h1");
-                h1.textContent = randomPokemon;
+                h1.textContent = randomPokemonData.pokemon; // Set h1.textContent to randomPokemonData.info
 
                 var p = document.createElement("p");
-                p.textContent = randomPokemon;
+                p.textContent = randomPokemonData.info;
 
                 back.appendChild(h1);
                 back.appendChild(p);
