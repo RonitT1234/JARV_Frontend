@@ -4,25 +4,8 @@ title: Student Blog
 ---
 
 
+<!--- ![Alt text](images/pokemon.png) --->
 ![Alt text](images/pokemon.png)
-
-<head>
-    <meta charset='utf-8'>
-    <meta name="viewport" content="width=device-width,
-    initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <title>Flip Card</title>
-    <script src="script.js"></script>
-</head>
-
-
-<body>
-    <div id="pokemon-pack">
-        <img src="./images/cover.jpg">
-    </div>
-    <div id="pokemon-cards-opened">
-    </div>
-</body>
 
 
 
@@ -185,3 +168,23 @@ title: Student Blog
 <body>
 <html> -->
 
+
+
+
+<head>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width,
+    initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Flip Card</title>
+    <script src="script.js"></script>
+</head>
+
+
+<body>
+    <div id="pokemon-pack">
+        <img src="./images/cover.jpg">
+    </div>
+    <div id="pokemon-cards-opened">
+    </div>
+</body>

@@ -11,6 +11,25 @@ body {
     font-family: 'Press Start 2P', cursive;
 }
 
+#pokemon-pack img {
+    animation: pulsate 2s infinite;
+}
+
+@keyframes pulsate {
+    0% {
+        box-shadow: 0 0 10px 2px #ffcb05; /* Start with a glow effect */
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 20px 5px #ffcb05; /* Increase the glow */
+        transform: scale(1.05);
+    }
+    100% {
+        box-shadow: 0 0 10px 2px #ffcb05; /* Return to the initial glow */
+        transform: scale(1);
+    }
+}
+
 .container {
     width: 350px;
     height: 500px;
@@ -54,3 +73,70 @@ body {
     align-items: center;
     gap: 5rem;
 }
+
+/* Style the table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    margin: 20px 0;
+  }
+  
+  th, td {
+    padding: 10px;
+    text-align: center;
+  }
+  
+  th {
+    background-color: #333333;
+    color: rgb(255, 0, 0);
+  }
+  
+  /* Style the table rows and cells */
+  tr:nth-child(even) {
+    background-color: #c0e3f4; /* Light blue for even rows */
+    color: rgb(255, 0, 0); /* Text color for even rows */
+  }
+  
+  tr:nth-child(odd) {
+    background-color: #7ba3d8; /* Slightly darker blue for odd rows */
+    color: yellow; /* Text color for odd rows */
+  }
+  
+  tr:hover {
+    background-color: #ffd166; /* Yellow on hover */
+  }
+  
+  /* Style the upvote and downvote buttons */
+  button {
+    background-color: #0077b6;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 50px; /* Rounded buttons */
+  }
+  
+  button:hover {
+    background-color: #ff2727; /* Yellow on hover */
+  }
+  
+  /* Center content in upvote and downvote cells */
+  td button {
+    display: block;
+    margin: 0 auto;
+  }
+  
+  /* Add some spacing around the buttons */
+  td button + button {
+    margin-top: 5px;
+  }
+  
+  /* Style the error messages */
+  .error {
+    background-color: #ff5733;
+    color: white;
+    text-align: center;
+    padding: 5px;
+  }
