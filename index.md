@@ -3,6 +3,9 @@ layout: default
 title: Student Blog
 ---
 
+
+![Alt text](images/pokemon.png)
+
 <head>
     <meta charset='utf-8'>
     <meta name="viewport" content="width=device-width,
@@ -21,44 +24,6 @@ title: Student Blog
     </div>
 </body>
 
-
-
-
-
-
-<html>
-<head>
-    <title>Cool Image Box</title>
-    <style>
-        /* Define the cool image box style */
-        .cool-image-box {
-            border: 4px dashed red; /* Red dashed border */
-            border-radius: 20px;
-            padding: 20px;
-            display: inline-block;
-        }
-
-        .box-content {
-            background-color: #f2f2f2;
-            text-align: center;
-        }
-
-        .box-image {
-            width: 600px; /* Make the image more rectangular */
-            height: 300px; /* Make the image more rectangular */
-            display: block;
-            margin: 0 auto;
-        }
-    </style>
-</head>
-<body>
-    <div class="cool-image-box">
-        <div class="box-content">
-            <img class="box-image" src="images/pokemon.png" alt="Pokemon Image">
-        </div>
-    </div>
-</body>
-</html>
 
 
 <!-- HTML table fragment for page -->

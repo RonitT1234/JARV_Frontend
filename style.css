@@ -1,12 +1,17 @@
-*{ 
-    margin:0;
+* {
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Import the Press Start 2P font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
+body {
+    font-family: 'Press Start 2P', cursive;
+}
 
-.container{
+.container {
     width: 350px;
     height: 500px;
     perspective: 800px;
@@ -17,7 +22,6 @@
     transform: rotateY(180deg) rotateZ(180deg);
 }
 
-
 .card {
     height: 100%;
     width: 100%;
@@ -26,14 +30,12 @@
     transform-style: preserve-3d;
 }
 
-
-
-.front, 
+.front,
 .back {
     height: 100%;
     width: 100%;
     border-radius: 2rem;
-    box-shadow: 0 0 5px 2px rgba(50, 50, 50, 0.25);
+    box-shadow: 0 0 10px 3px rgba(255, 255, 0, 0.952);
     position: absolute;
     backface-visibility: hidden;
 }
@@ -42,11 +44,10 @@
     background-image: url('./images/pokemonback.jpg');
 }
 
-
-.back{
-
-    background-color: #3a3a3a;
-    transform: RotateY(180deg) rotateZ(180deg);
+.back {
+    background: linear-gradient(to bottom right, #0d71fc, #12ecf8);
+    color: #000000;
+    transform: rotateY(180deg) rotateZ(180deg);
     display: flex;
     flex-direction: column;
     justify-content: center;
