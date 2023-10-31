@@ -9,6 +9,8 @@
 
 body {
     font-family: 'Press Start 2P', cursive;
+    background: url('images/wallpaper.jpg') center center no-repeat;
+    background-size: cover;
 }
 
 #pokemon-pack img {
