@@ -2,14 +2,13 @@
 title: Pokemon Game
 ---
 <html>
-<head>
-    <link rel="stylesheet" type="text/css" href="PokeStyle.css">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Pokemon Game</title>
+    <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="Pokescript.js"></script>
 </head>
 <body>
-    <div id="game-container">
-        <div id="player"></div>
-        <div id="obstacle"></div>
-    </div>
-    <script src="Pokescript.js"></script>
+    <canvas id="canvas" width="460" height="460"></canvas>
 </body>
 </html>

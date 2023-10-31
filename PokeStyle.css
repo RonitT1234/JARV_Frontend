@@ -1,35 +1,90 @@
-body {
-    margin: 0;
-    overflow: hidden;
-}
-
-#game-container {
-    width: 800px;
-    height: 400px;
-    background-image: url('background.jpg'); /* Add your background image */
+/* General game container styles */
+.game-container {
+    background-image: url('background.jpg');
     background-size: cover;
+    width: 100%;
+    height: 100vh;
     position: relative;
-    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-family: Arial, sans-serif;
 }
 
-#player {
-    width: 100px;
-    height: 50px;
-    background-image: url('pokemon1.jpg'); /* Add your player character image */
-    background-size: cover;
+/* Game header styles */
+.game-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.game-header h1 {
+    font-size: 36px;
+    margin: 0;
+}
+
+/* Score display styles */
+#score {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Player character styles */
+.player {
+    background-image: url('pokemon1.jpg');
+    background-size: contain;
+    width: 80px;
+    height: 80px;
     position: absolute;
-    bottom: 0;
-    left: 50px; /* Adjust the starting position */
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
-#obstacle {
-    width: 50px;
-    height: 50px;
-    background-image: url('obstacle.jpeg'); /* Add your obstacle image */
-    background-size: cover;
+/* Obstacle styles */
+.obstacle {
+    background-image: url('obstacle1.jpeg');
+    background-size: contain;
+    width: 60px;
+    height: 60px;
     position: absolute;
-    bottom: 0;
-    right: 50px; /* Adjust the starting position */
-    
+    bottom: 20px;
 }
 
+.obstacle:nth-child(1) {
+    left: 20%;
+}
+
+.obstacle:nth-child(2) {
+    left: 50%;
+}
+
+.obstacle:nth-child(3) {
+    left: 80%;
+}
+
+/* Game buttons styles */
+#start-button, #restart-button {
+    background-color: #ff3333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Game over screen styles */
+.game-over {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
