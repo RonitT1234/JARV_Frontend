@@ -4,6 +4,11 @@
     box-sizing: border-box;
 }
 
+.center-text {
+  text-align: center;
+}
+
+
 /* Import the Press Start 2P font from Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
@@ -73,7 +78,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 5rem;
+    gap: 1rem;
 }
 
 /* Style the table */

@@ -77,6 +77,7 @@ async function openPack() {
                 h1.textContent = name;
                 var p = document.createElement("p");
                 p.textContent = pokemonInfo; // Set p.textContent to the Pokémon info
+                p.className = "center-text";
 
                 var image = document.createElement("img");
                 image.src = imageUrl; // Set the image source
