@@ -95,28 +95,28 @@ table {
   }
   
   th {
-    background-color: #333333;
-    color: rgb(255, 0, 0);
+    background-color: #3B4CCA;
+    color: #FFDE00;
   }
   
   /* Style the table rows and cells */
-  tr:nth-child(even) {
-    background-color: #c0e3f4; /* Light blue for even rows */
-    color: rgb(255, 0, 0); /* Text color for even rows */
+  tr:nth-child(odd) {
+    background-color: #1A6EB2; /* Light blue for even rows */
+    color: #FFC805; /* Text color for even rows */
   }
   
-  tr:nth-child(odd) {
-    background-color: #7ba3d8; /* Slightly darker blue for odd rows */
-    color: yellow; /* Text color for odd rows */
+  tr:nth-child(even) {
+    background-color: #94D1EF; /* Slightly darker blue for odd rows */
+    color: #B3A125; /* Text color for odd rows */
   }
   
   tr:hover {
-    background-color: #ffd166; /* Yellow on hover */
+    background-color: #345698; /* Yellow on hover */
   }
   
   /* Style the upvote and downvote buttons */
   button {
-    background-color: #0077b6;
+    background-color: #3B4CCA;
     color: white;
     border: none;
     padding: 5px 10px;
@@ -126,7 +126,7 @@ table {
   }
   
   button:hover {
-    background-color: #ff2727; /* Yellow on hover */
+    background-color: #FFC805; /* Yellow on hover */
   }
   
   /* Center content in upvote and downvote cells */
