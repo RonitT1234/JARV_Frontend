@@ -20,15 +20,24 @@ const questions = [
         answer: "9",
     },
     {
+<<<<<<< HEAD
         question: "Who gave Ash Ketchum his first Pokémon?"
+=======
+        question: "Who gave Ash Ketchum his first pokemon?",
+>>>>>>> a0f7763 (QuizUpdate)
         options: ["Professor Oak", "Nurse Joy", "Professor X", "Mr. Fox"],
         answer: "Professor Oak",
     },
     {
         question: "Who does Pikachu evolve into?",
         options: ["Pichu", "Chuchu", "Pekuchi","Raichu"],
+<<<<<<< HEAD
         answer: "Raichu",
     }
+=======
+        answer: "",
+    },
+>>>>>>> a0f7763 (QuizUpdate)
     {
         question: "What is the first Pokémon the Pokédex? (Not first created)",
         options: ["Bulbasaur", "Pikachu", "Charizard", "Squirtle"],
