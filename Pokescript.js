@@ -18,6 +18,8 @@ window.onload = function() {
     var speed = 100;
     var modifier = 100;
     var score = 0;
+    var pokeballMoving = false;
+    var pokeballSpeed = 1;
   
     //terrain image
     var terrainImage = new Image();
@@ -83,6 +85,38 @@ window.onload = function() {
       pokeball.spritePosition = Math.floor(Math.random() * 4) + 0; // get position from 0-4
     };
   
+
+    function movePokeball() {
+        if (!pokeballMoving) {
+          pokeballMoving = true;
+          var direction = 1; // Adjust the direction of movement (1 for right, -1 for left)
+      
+          // Move the pokeball at regular intervals
+          var moveInterval = setInterval(function () {
+            pokeball.x += direction * pokeballSpeed;
+      
+            // Check if the pokeball is out of bounds and reverse its direction
+            if (pokeball.x < 0 || pokeball.x > 19) {
+              direction *= -1;
+            }
+      
+            // Redraw the game
+            update();
+      
+            // Check for collisions and handle them here
+            if (player.x == pokeball.x && player.y == pokeball.y) {
+              // Found a pokeball! Create a new one.
+              console.log('Found a pokeball of ' + pokeball.spritePosition + '! Bravo!');
+              pokePick.pause();
+              pokePick.currentTime = 0;
+              pokePick.play();
+              score += 1;
+              pokeball.generatePosition();
+            }
+          }, 100); // Adjust the interval to control the speed of movement
+        }
+      }
+
     /**
      * Holds all the player's info like x and y axis position, his current direction (facing).
      * I have also incuded an object to hold the sprite position of each movement so i can call them
@@ -324,27 +358,28 @@ window.onload = function() {
      * @name assetsLoaded
      */
     function assetsLoaded() {
-      if (
-        terrainImageLoaded == true &&
-        houseImageLoaded == true &&
-        pokeballImageLoaded == true &&
-        playerImageLoaded == true
-      ) {
-        pokeball.generatePosition();
-        update();
-      }
-    }
-  
-    /**
-     * Assign of the arrow keys to call the player move
-     */
-    document.onkeydown = function(e) {
+  if (
+    terrainImageLoaded == true &&
+    houseImageLoaded == true &&
+    pokeballImageLoaded == true &&
+    playerImageLoaded == true
+  ) {
+    pokeball.generatePosition();
+    update();
+
+    // Add an event listener to start the pokeball movement when the 'M' key is pressed
+    document.onkeydown = function (e) {
       e = e || window.event;
-  
+
       if (e.keyCode == '37') player.move('left');
       else if (e.keyCode == '38') player.move('up');
       else if (e.keyCode == '39') player.move('right');
       else if (e.keyCode == '40') player.move('down');
+      else if (e.key == 'm') {
+        movePokeball();
+      }
     };
+  }
+}
   };
   

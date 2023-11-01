@@ -9,6 +9,6 @@ title: Pokemon Game
     <script src="Pokescript.js"></script>
 </head>
 <body>
-    <canvas id="canvas" width="460" height="460"></canvas>
+    <canvas id="canvas" width="600" height="460"></canvas>
 </body>
-</html>
+</html>                                   
