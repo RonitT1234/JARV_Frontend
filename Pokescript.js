@@ -86,18 +86,38 @@ window.onload = function() {
     };
   
 
-    function movePokeball() {
+    function movePokeballRandomly() {
         if (!pokeballMoving) {
           pokeballMoving = true;
-          var direction = 1; // Adjust the direction of movement (1 for right, -1 for left)
       
           // Move the pokeball at regular intervals
           var moveInterval = setInterval(function () {
-            pokeball.x += direction * pokeballSpeed;
+            // Generate random directions for both x and y axes (0 for no movement, 1 for left/up, 2 for right/down)
+            var randomDirectionX = Math.floor(Math.random() * 3);
+            var randomDirectionY = Math.floor(Math.random() * 3);
+      
+            // Apply the random directions to move the pokeball
+            if (randomDirectionX === 1) {
+              pokeball.x -= pokeballSpeed;
+            } else if (randomDirectionX === 2) {
+              pokeball.x += pokeballSpeed;
+            }
+      
+            if (randomDirectionY === 1) {
+              pokeball.y -= pokeballSpeed;
+            } else if (randomDirectionY === 2) {
+              pokeball.y += pokeballSpeed;
+            }
       
             // Check if the pokeball is out of bounds and reverse its direction
             if (pokeball.x < 0 || pokeball.x > 19) {
-              direction *= -1;
+              pokeball.x = Math.min(19, Math.max(0, pokeball.x)); // Keep the pokeball within bounds
+              randomDirectionX = 0; // Stop the x-axis movement
+            }
+      
+            if (pokeball.y < 4 || pokeball.y > 19) {
+              pokeball.y = Math.min(19, Math.max(4, pokeball.y)); // Keep the pokeball within bounds
+              randomDirectionY = 0; // Stop the y-axis movement
             }
       
             // Redraw the game
@@ -112,6 +132,9 @@ window.onload = function() {
               pokePick.play();
               score += 1;
               pokeball.generatePosition();
+              clearInterval(moveInterval); // Stop the current movement
+              pokeballMoving = false; // Reset the pokeball movement flag
+              movePokeballRandomly(); // Start a new random movement
             }
           }, 100); // Adjust the interval to control the speed of movement
         }
@@ -358,28 +381,28 @@ window.onload = function() {
      * @name assetsLoaded
      */
     function assetsLoaded() {
-  if (
-    terrainImageLoaded == true &&
-    houseImageLoaded == true &&
-    pokeballImageLoaded == true &&
-    playerImageLoaded == true
-  ) {
-    pokeball.generatePosition();
-    update();
-
-    // Add an event listener to start the pokeball movement when the 'M' key is pressed
-    document.onkeydown = function (e) {
-      e = e || window.event;
-
-      if (e.keyCode == '37') player.move('left');
-      else if (e.keyCode == '38') player.move('up');
-      else if (e.keyCode == '39') player.move('right');
-      else if (e.keyCode == '40') player.move('down');
-      else if (e.key == 'm') {
-        movePokeball();
+        if (
+          terrainImageLoaded == true &&
+          houseImageLoaded == true &&
+          pokeballImageLoaded == true &&
+          playerImageLoaded == true
+        ) {
+          pokeball.generatePosition();
+          update();
+      
+          // Add an event listener to start the pokeball movement when the 'M' key is pressed
+          document.onkeydown = function (e) {
+            e = e || window.event;
+      
+            if (e.keyCode == '37') player.move('left');
+            else if (e.keyCode == '38') player.move('up');
+            else if (e.keyCode == '39') player.move('right');
+            else if (e.keyCode == '40') player.move('down');
+            else if (e.key == 'm') {
+              movePokeballRandomly(); // Call the updated function to move the pokeball randomly
+            }
+          };
+        }
       }
-    };
-  }
-}
   };
   

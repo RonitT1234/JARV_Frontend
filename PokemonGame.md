@@ -5,6 +5,7 @@ title: Pokemon Game
 <head lang="en">
     <meta charset="UTF-8">
     <title>Pokemon Game</title>
+    <hr>Too play, use the arrow keys to move around and collect the Pokeballs. Have fun!<hr>
     <hr>Too easy? Press the "M" key<hr>
     <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="Pokescript.js"></script>
