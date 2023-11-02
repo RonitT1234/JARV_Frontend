@@ -7,7 +7,7 @@ var pokemonData = []; // Initialize the variable to store data
 
 function fetchAPIdata() {
     // You should replace this URL with your actual API endpoint to fetch image data.
-    const apiUrl = 'http://127.0.0.1:8086/api/pokemons/';
+    const apiUrl = 'http://127.0.0.1:8086/api/pokemons';
 
     // Make an HTTP GET request to the API
     return fetch(apiUrl)
