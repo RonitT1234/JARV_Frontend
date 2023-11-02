@@ -13,7 +13,7 @@ window.onload = function() {
         var currentTime = Date.now();
         var elapsedTime = Math.floor((currentTime - startTime) / 1000); // Calculate elapsed time in seconds
 
-        if (elapsedTime <= 60) {
+        if (elapsedTime <= 30) {
             // Update the timer value
             var remainingTime = 30 - elapsedTime;
             document.getElementById('timer').textContent = 'Time: ' + remainingTime + 's';
