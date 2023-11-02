@@ -5,6 +5,66 @@
  */
 window.onload = function() {
     'use strict';
+
+    var startTime = Date.now(); // Record the start time
+    var timerElement = document.getElementById('timer');
+
+    var timerInterval = setInterval(updateTimer, 1000); // Update the timer every 1 second
+
+    function updateTimer() {
+        var currentTime = Date.now();
+        var elapsedTime = Math.floor((currentTime - startTime) / 1000); // Calculate elapsed time in seconds
+
+        if (elapsedTime <= 30) {
+            // Update the timer value
+            var remainingTime = 30 - elapsedTime;
+            timerElement.textContent = 'Time: ' + remainingTime + 's';
+        } else {
+            clearInterval(timerInterval); // Stop the timer when 60 seconds have passed
+            // You can add game-over logic here
+            alert('Game Over! Your final score: ' + score);
+        }
+    }
+
+    /**
+     * Handle all the updates of the canvas and creates the objects
+     * @function
+     * @name update
+     */
+    function update() {
+        ctx.drawImage(terrainImage, 0, 0);
+        ctx.drawImage(houseImage, 80, 60);
+
+        // Genboard
+        board();
+
+        // pokeball
+        ctx.drawImage(
+            pokeballImage,
+            pokeball.spritePosition * pokeball.spriteItemDistance,
+            0,
+            objectSizes,
+            objectSizes,
+            pokeball.x * objectSizes,
+            pokeball.y * objectSizes,
+            objectSizes,
+            objectSizes
+        );
+
+        // player
+        ctx.drawImage(
+            playerImage,
+            player.direction[player.currentDirection].x,
+            player.direction[player.currentDirection].y,
+            objectSizes - 2,
+            objectSizes,
+            player.x * objectSizes,
+            player.y * objectSizes,
+            objectSizes,
+            objectSizes
+        );
+    }
+
   
     var canvas = document.getElementById('canvas');
     var ctx = canvas.getContext('2d');
@@ -63,6 +123,7 @@ window.onload = function() {
     };
     pokeballImage.src = 'https://drive.google.com/uc?id=1XiXaiRlytnRI2ncwnBWyyef79guxI55X';
   
+
     /**
      * It will hold all the pockeball data like x and y axis position
      * sprite position and item distance is for determine which item is selected from the sprite - @todo future use for knowing on score which one player picked
@@ -85,7 +146,7 @@ window.onload = function() {
       pokeball.spritePosition = Math.floor(Math.random() * 4) + 0; // get position from 0-4
     };
   
-
+    
     function movePokeballRandomly() {
         if (!pokeballMoving) {
           pokeballMoving = true;
@@ -256,6 +317,19 @@ window.onload = function() {
   
           break;
       }
+
+      document.onkeydown = function (e) {
+        e = e || window.event;
+      
+        // Change the controls to W, A, S, and D
+        if (e.key === 'A' || e.key === 'a') player.move('left');
+        else if (e.key === 'W' || e.key === 'w') player.move('up');
+        else if (e.key === 'D' || e.key === 'd') player.move('right');
+        else if (e.key === 'S' || e.key === 's') player.move('down');
+        else if (e.key === 'M' || e.key === 'm') {
+          movePokeballRandomly(); // Call the updated function to move the pokeball randomly
+        }
+      };
   
       /**
        * if there is a collision just fallback to the temp object i build before while not change back the direction so we can have a movement
