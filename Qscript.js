@@ -12,7 +12,7 @@ const questions = [
     {
         question: "What device do trainers use to access a database of all their Pokemon?",
         options: ["Pokélist", "Pokédex", "Pokémon Training Chart", "Poké-Catalog"],
-        answer: "Pokedex",
+        answer: "Pokédex",
     },
     {
         question: "As of October 2023, how many Pokémon generations are there?",
@@ -20,7 +20,7 @@ const questions = [
         answer: "9",
     },
     {
-        question: "Who gave Ash Ketchum his first Pokémon?"
+        question: "Who gave Ash Ketchum his first Pokémon?",
         options: ["Professor Oak", "Nurse Joy", "Professor X", "Mr. Fox"],
         answer: "Professor Oak",
     },
@@ -28,7 +28,7 @@ const questions = [
         question: "Who does Pikachu evolve into?",
         options: ["Pichu", "Chuchu", "Pekuchi","Raichu"],
         answer: "Raichu",
-    }
+    },
     {
         question: "What is the first Pokémon the Pokédex? (Not first created)",
         options: ["Bulbasaur", "Pikachu", "Charizard", "Squirtle"],
