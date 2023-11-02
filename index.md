@@ -2,9 +2,6 @@
 layout: default
 title: Student Blog
 ---
-
-
-<!--- ![Alt text](images/pokemon.png) --->
 ![Alt text](images/pokemon.png)
 
 <!-- HTML table fragment for page -->
@@ -153,21 +150,19 @@ title: Student Blog
 </script>
 
 
-<!--- <body>
-    <div class="container">
-        <div class ="card">
-            <div class="front"></div>
-            <div class="back">
-                <h1>Back of Card</h1>
-                <p>Addtional Info on the back of the card</p>
-            </div>
-        </div>
-    </div>
+<html>
+<head>
+    <style>
+        .centered-image {
+            display: block;
+            margin: 0 auto; /* This centers the image horizontally */
+        }
+    </style>
+</head>
 <body>
-<html> -->
-
-
-
+    <img src="https://fontmeme.com/permalink/231102/9f292fcf813fd4fbfa7a12467269b7b3.png" alt="Alt text" class="centered-image">
+</body>
+</html>
 
 <head>
     <meta charset='utf-8'>
@@ -186,3 +181,6 @@ title: Student Blog
     <div id="pokemon-cards-opened">
     </div>
 </body>
+
+
+
