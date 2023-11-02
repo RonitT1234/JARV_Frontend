@@ -7,20 +7,18 @@ window.onload = function() {
     'use strict';
 
     var startTime = Date.now(); // Record the start time
-    var timerElement = document.getElementById('timer');
-
     var timerInterval = setInterval(updateTimer, 1000); // Update the timer every 1 second
-
+  
     function updateTimer() {
         var currentTime = Date.now();
         var elapsedTime = Math.floor((currentTime - startTime) / 1000); // Calculate elapsed time in seconds
 
-        if (elapsedTime <= 30) {
+        if (elapsedTime <= 60) {
             // Update the timer value
             var remainingTime = 30 - elapsedTime;
-            timerElement.textContent = 'Time: ' + remainingTime + 's';
+            document.getElementById('timer').textContent = 'Time: ' + remainingTime + 's';
         } else {
-            clearInterval(timerInterval); // Stop the timer when 60 seconds have passed
+            clearInterval(timerInterval); // Stop the timer when 30 seconds have passed
             // You can add game-over logic here
             alert('Game Over! Your final score: ' + score);
         }
@@ -35,10 +33,10 @@ window.onload = function() {
         ctx.drawImage(terrainImage, 0, 0);
         ctx.drawImage(houseImage, 80, 60);
 
-        // Genboard
+        //Genboard
         board();
 
-        // pokeball
+        //pokeball
         ctx.drawImage(
             pokeballImage,
             pokeball.spritePosition * pokeball.spriteItemDistance,
@@ -51,7 +49,7 @@ window.onload = function() {
             objectSizes
         );
 
-        // player
+        //player
         ctx.drawImage(
             playerImage,
             player.direction[player.currentDirection].x,
@@ -446,7 +444,7 @@ window.onload = function() {
   
       ctx.font = '14px Arial';
       ctx.fillStyle = 'rgba(255, 255, 255, 1)';
-      ctx.fillText(score + ' poketballs', w - 85, h - 25);
+      ctx.fillText(score + ' poke balls', w - 85, h - 25);
     }
   
     /**

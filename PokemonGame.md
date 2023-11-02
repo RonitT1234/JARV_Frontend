@@ -9,7 +9,7 @@ title: Pokemon Game
     <hr>Too easy? Press the "M" key<hr>
     <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
     <div class="timer" id="timer">Time: 30s</div>
-    <canvas id="canvas" width="400" height="400"></canvas>
+    <canvas id="canvas" width="800" height="500"></canvas>
     <script src="Pokescript.js"></script>
 </head>
 <body>
