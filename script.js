@@ -24,7 +24,7 @@ function fetchAPIdata() {
 
 function fetchRandomName() {
     // You should replace this URL with your actual API endpoint to fetch image data.
-    const apiUrl = 'https://jarvproject.stu.nighthawkcodingsociety.com/api/pokemons/random';
+    const apiUrl = 'http://127.0.0.1:8086/api/pokemons/random';
 
     // Make an HTTP GET request to the API
     return fetch(apiUrl)

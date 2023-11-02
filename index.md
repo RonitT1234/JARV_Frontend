@@ -29,7 +29,7 @@ title: Student Blog
   const DOWNVOTE = "downvote";
 
   // prepare fetch urls
-  const url = "https://jarvproject.stu.nighthawkcodingsociety.com/api/pokemons";
+  const url = "http://127.0.0.1:8086/api/pokemons";
   const like_url = url + "/upvote/";  // upvote reaction
   const jeer_url = url + "/downvote/";  // downvote reaction
 
