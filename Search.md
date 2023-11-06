@@ -1,6 +1,7 @@
 ---
 title: Search
 ---
+
 <html>
 <head>
     <title>Pokemon Info</title>
@@ -8,7 +9,7 @@ title: Search
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            background-color: #f2f2f2;
+            background-color: #F2F2F2;
         }
         #container {
             background-color: #111;
@@ -19,7 +20,7 @@ title: Search
             margin: 0 auto;
         }
         h1 {
-            color: #e6494b;
+            color: #E6494B;
         }
         label {
             display: block;
@@ -33,7 +34,7 @@ title: Search
             border-radius: 4px;
         }
         button {
-            background-color: #e6494b;
+            background-color: #E6494B;
             color: #fff;
             padding: 10px 20px;
             border: none;
@@ -41,7 +42,7 @@ title: Search
             cursor: pointer;
         }
         button:hover {
-            background-color: #d13234;
+            background-color: #D13234;
         }
         #result {
             text-align: left;
@@ -90,13 +91,19 @@ title: Search
                 const id = data.id;
                 const types = data.types.map(type => type.type.name).join(', ');
                 const abilities = data.abilities.map(ability => ability.ability.name).join(', ');
+                const height = data.height;
+                const weight = data.weight;
                 const imageURL = data.sprites.front_default;
+                const baseStats = data.stats.map(stat => `${stat.stat.name}: ${stat.base_stat}`).join(', ');
                 const result = `
                     <img id="pokemonImage" src="${imageURL}" alt="Pokemon Image">
                     <p><strong>Name:</strong> ${name}</p>
                     <p><strong>ID:</strong> ${id}</p>
                     <p><strong>Types:</strong> ${types}</p>
                     <p><strong>Abilities:</strong> ${abilities}</p>
+                    <p><strong>Height:</strong> ${height} dm</p>
+                    <p><strong>Weight:</strong> ${weight} hectograms</p>
+                    <p><strong>Base Stats:</strong> ${baseStats}</p>
                 `;
                 document.getElementById('result').innerHTML = result;
             });
